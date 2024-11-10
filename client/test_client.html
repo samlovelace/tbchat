@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Room - Terminal Theme</title>
+    <style>
+        /* Dark background and terminal-inspired styling */
+        body {
+            background-color: #1e1e1e;
+            color: #00ff7f;
+            font-family: "Courier New", Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        h2 {
+            color: #00ff7f;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Chat log area with scrolling */
+        #chat-log {
+            width: 90%;
+            max-width: 600px;
+            height: 300px;
+            background-color: #2e2e2e;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 10px;
+            overflow-y: scroll;
+            box-shadow: 0px 0px 10px rgba(0, 255, 127, 0.2);
+            margin-bottom: 10px;
+        }
+
+        /* Style individual messages */
+        .message {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+
+        /* Username styling */
+        .username {
+            color: #1e90ff; /* Light blue */
+            font-weight: bold;
+        }
+
+        /* Message text styling */
+        .message-text {
+            color: #00ff7f; /* Green */
+        }
+
+        /* Input and button styling */
+        #input-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        #message {
+            flex: 1;
+            padding: 10px;
+            background-color: #1c1c1c;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: #00ff7f;
+            font-family: "Courier New", Courier, monospace;
+            outline: none;
+            box-shadow: inset 0px 0px 5px rgba(0, 255, 127, 0.3);
+        }
+
+        #send {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: #444;
+            color: #00ff7f;
+            font-family: "Courier New", Courier, monospace;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0px 0px 5px rgba(0, 255, 127, 0.3);
+        }
+
+        #send:hover {
+            background-color: #00ff7f;
+            color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+    <h2>Terminal Chat Room</h2>
+    <div id="chat-log"></div>
+    <div id="input-container">
+        <input type="text" id="message" placeholder="Type your message here...">
+        <button id="send">Send</button>
+    </div>
+
+    <script>
+        const chatLog = document.getElementById("chat-log");
+        const messageInput = document.getElementById("message");
+        const sendButton = document.getElementById("send");
+
+        // Prompt for username
+        let username = prompt("Enter your username:");
+        if (!username) {
+            username = "Anonymous"; // Default if user cancels or enters nothing
+        }
+
+        // Connect to the WebSocket server (make sure the address matches your server's)
+        const socket = new WebSocket("ws://localhost:9002"); // Replace with your server address
+
+        socket.onopen = function() {
+            const systemMessage = document.createElement("div");
+            systemMessage.classList.add("message");
+            systemMessage.style.color = "#00ff7f";
+            systemMessage.textContent = `${username} connected to the chat.`;
+            chatLog.appendChild(systemMessage);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        };
+
+        socket.onmessage = function(event) {
+            // Split the username and message parts based on ': '
+            const [user, messageText] = event.data.split(": ", 2);
+
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message");
+
+            const usernameSpan = document.createElement("span");
+            usernameSpan.classList.add("username");
+            usernameSpan.textContent = user + ": ";
+
+            const messageSpan = document.createElement("span");
+            messageSpan.classList.add("message-text");
+            messageSpan.textContent = messageText;
+
+            messageElement.appendChild(usernameSpan);
+            messageElement.appendChild(messageSpan);
+
+            chatLog.appendChild(messageElement);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        };
+
+        socket.onclose = function() {
+            const systemMessage = document.createElement("div");
+            systemMessage.classList.add("message");
+            systemMessage.style.color = "#ff0000";
+            systemMessage.textContent = "Disconnected from the server.";
+            chatLog.appendChild(systemMessage);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        };
+
+        sendButton.onclick = function() {
+            const message = messageInput.value.trim();
+            if (message) {
+                // Prefix the message with the username before sending
+                socket.send(`${username}: ${message}`);
+                messageInput.value = "";
+            }
+        };
+
+        // Send message on Enter key
+        messageInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendButton.click();
+            }
+        });
+    </script>
+</body>
+</html>
