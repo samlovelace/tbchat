@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>tbchat - Welcome</title>
-    <link rel="stylesheet" href="style.css">
+    <link id="theme-stylesheet" rel="stylesheet" href="css/style-solarized.css">
 </head>
 <body>
     <!-- Welcome Prompt Modal -->
     <div id="welcome-prompt">
         <div id="prompt-container">
-            <h2>Welcome to tbchat</h2>
+            <h2>tbchat</h2>
+
+            <!-- Username and Room Selection -->
             <label for="username">username:</label>
             <input type="text" id="username" placeholder="Username" required>
 
             <label for="room-select">room:</label>
             <select id="room-select">
                 <option value="" disabled selected>Loading rooms...</option>
+            </select>
+
+            <!-- Theme Selector Dropdown -->
+            <label for="theme-select">Select Theme:</label>
+            <select id="theme-select">
+                <option value="css/style-solarized.css">Solarized Dark</option>
+                <option value="css/style-catppucian.css">Catppucian</option>
             </select>
 
             <button id="join-button">Join Chat</button>
@@ -33,4 +42,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

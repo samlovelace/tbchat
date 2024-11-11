@@ -1,0 +1,156 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic Styling */
+body {
+    background-color: #1E1E2E;  /* Base background */
+    color: #C3BAC6;             /* Default text color */
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* Modal Overlay for Welcome Prompt */
+#welcome-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30, 30, 46, 0.95); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #C3BAC6;
+}
+
+/* Centered Prompt Container */
+#prompt-container {
+    background-color: #181825;  /* Dark background */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    width: 300px;
+}
+
+/* Heading Style */
+#prompt-container h2 {
+    color: #F5C2E7;  /* Pink accent */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Labels for Inputs */
+#prompt-container label {
+    display: block;
+    margin-top: 15px;
+    color: #A6ADC8; /* Light gray for labels */
+    font-size: 0.95em;
+}
+
+/* Inputs and Dropdown Styling */
+#prompt-container input, #prompt-container select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    background-color: #1A1823; /* Dark input background */
+    color: #C3BAC6;            /* Light text */
+    border: 1px solid #44475a; /* Dark border */
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Join Button Styling */
+#join-button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #F5C2E7; /* Pink */
+    color: #1A1823;            /* Dark text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#join-button:hover {
+    background-color: #DDB6F2;  /* Purple */
+}
+
+/* Chat Window */
+#chat-content {
+    padding: 20px;
+    font-family: "Courier New", Courier, monospace;
+    color: #C3BAC6;             /* Light text */
+    background-color: #1E1E2E;  /* Dark background */
+    min-height: 100vh;
+}
+
+/* Chat log container */
+#chat-log {
+    background-color: #302D41;  /* Darker background */
+    border: 1px solid #44475a;  /* Dark border */
+    border-radius: 5px;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    color: #C3BAC6;             /* Default text color for chat */
+}
+
+/* Username in different Solarized accent colors and message text */
+.message {
+    margin: 5px 0;
+    display: flex;              /* Use flex to position timestamp */
+    align-items: center;
+}
+
+/* Username Color in Various Accent Colors */
+.username {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #96CDFB;  /* Soft blue for usernames */
+}
+
+/* Message text color */
+.message-text {
+    color: #C6AAE8;  /* Muted light color for messages */
+}
+
+/* Timestamp styling */
+.timestamp {
+    color: #8CAAEE; /* Light blue for timestamp */
+    font-size: 0.85em;
+    margin-left: 10px;
+}
+
+/* Message Input Field */
+#message {
+    width: calc(100% - 60px);
+    padding: 10px;
+    background-color: #302D41;  /* Dark input background */
+    color: #C3BAC6;             /* Light text */
+    border: 1px solid #44475a;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Send Button */
+#send {
+    width: 50px;
+    padding: 10px;
+    background-color: #96CDFB;  /* Blue */
+    color: #1E1E2E;             /* Dark background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#send:hover {
+    background-color: #89B4FA;  /* Lighter blue */
+}
+
