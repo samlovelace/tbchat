@@ -20,6 +20,25 @@ document.addEventListener("DOMContentLoaded", function() {
         return now.toTimeString().split(' ')[0];  // HH:MM:SS format
     }
 
+    // Define a Solarized-inspired color palette
+    const colorPalette = [
+        "#268BD2", "#B58900", "#CB4B16", "#6C71C4",
+        "#D33682", "#859900", "#DC322F", "#93A1A1", "#073642"
+    ];
+    
+    // Map to store colors for each unique user
+    const userColors = {};
+
+    // Function to assign or retrieve a color for a username
+    function getColorForUsername(username) {
+        if (!userColors[username]) {
+            // Assign a color from the palette based on the current size of the map
+            const color = colorPalette[Object.keys(userColors).length % colorPalette.length];
+            userColors[username] = color;
+        }
+        return userColors[username];
+    }
+
     socket.onmessage = function(event) {
         const data = JSON.parse(event.data);
 
@@ -41,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const usernameSpan = document.createElement("span");
             usernameSpan.classList.add("username");
             usernameSpan.textContent = `${data.username}: `;
+            usernameSpan.style.color = getColorForUsername(data.username)
     
             // Create a span for the message text
             const messageTextSpan = document.createElement("span");

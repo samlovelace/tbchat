@@ -146,6 +146,7 @@
 .username {
     color: #1e90ff;             /* Blue for usernames */
     font-weight: bold;
+    margin-right: 5px;
 }
 
 .message-text {
