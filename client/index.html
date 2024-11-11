@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>tbchat - Welcome</title>
-    <link id="theme-stylesheet" rel="stylesheet" href="css/style-solarized.css">
+    <link id="theme-stylesheet" rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Welcome Prompt Modal -->
@@ -23,9 +23,15 @@
             <!-- Theme Selector Dropdown -->
             <label for="theme-select">Select Theme:</label>
             <select id="theme-select">
-                <option value="css/style-solarized.css">Solarized Dark</option>
-                <option value="css/style-catppucian.css">Catppucian</option>
-            </select>
+				<option value="">Default</option>
+				<option value="solarized">Solarized Dark</option>
+				<option value="catppuccin">Catppuccin Mocha</option>
+                <option value="dracula">Dracula</option>
+                <option value="nord">Nord</option>
+                <option value="monokai">Monokai</option>
+                <option value="gruvbox">Gruvbox</option>
+	    	</select>
+
 
             <button id="join-button">Join Chat</button>
         </div>

@@ -6,14 +6,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const roomSelect = document.getElementById("room-select");
     const roomTitle = document.getElementById("room-title");
     const themeSelect = document.getElementById("theme-select");
-    const themeStylesheet = document.getElementById("theme-stylesheet");
-
+    
     // Connect to WebSocket server
     const socket = new WebSocket("ws://localhost:9002");  // Update to your server address
 
-    // Event listener for theme change
     themeSelect.addEventListener("change", (event) => {
-        themeStylesheet.href = event.target.value;
+        document.body.className = ""; // Clear existing theme classes
+        document.body.classList.add(event.target.value); // Add the selected theme class
     });
 
     socket.onopen = function() {
@@ -67,13 +66,13 @@ document.addEventListener("DOMContentLoaded", function() {
             const usernameSpan = document.createElement("span");
             usernameSpan.classList.add("username");
             usernameSpan.textContent = `${data.username}: `;
-            usernameSpan.style.color = getColorForUsername(data.username);
+            //usernameSpan.style.color = getColorForUsername(data.username);
     
             // Create a span for the message text
             const messageTextSpan = document.createElement("span");
             messageTextSpan.classList.add("message-text");
             messageTextSpan.textContent = data.message;
-            messageTextSpan.style.color = usernameSpan.style.color;
+            //messageTextSpan.style.color = usernameSpan.style.color;
 
             // Create a span for the timestamp, aligned to the right
             const timestampSpan = document.createElement("span");

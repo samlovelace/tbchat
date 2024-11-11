@@ -1,0 +1,230 @@
+/* Define CSS variables for color scheme on :root */
+:root {
+    --background-color: #f9f9f9;      /* Default background */
+    --text-color: #333;
+    --input-bg-color: #ffffff;
+    --button-bg-color: #007acc;
+    --button-hover-bg-color: #005f99;
+    --username-color: #007acc;
+    --message-text-color: #333;
+    --timestamp-color: #999;
+}
+
+/* Solarized Dark Theme */
+.solarized {
+    --background-color: #002B36;
+    --text-color: #839496;
+    --input-bg-color: #073642;
+    --button-bg-color: #268BD2;
+    --button-hover-bg-color: #2AA198;
+    --username-color: #268BD2;
+    --message-text-color: #839496;
+    --timestamp-color: #586e75;
+}
+
+/* Catppuccin Mocha Theme */
+.catppuccin {
+    --background-color: #1E1E2E;         /* Dark background */
+    --text-color: #D9E0EE;               /* Light text */
+    --input-bg-color: #302D41;           /* Darker background for input fields */
+    --button-bg-color: #96CDFB;          /* Light blue for buttons */
+    --button-hover-bg-color: #89B4FA;    /* Slightly lighter blue for hover */
+    --username-color: #F5C2E7;           /* Pink for usernames */
+    --message-text-color: #C6AAE8;       /* Muted light color for messages */
+    --timestamp-color: #8CAAEE;          /* Soft blue for timestamps */
+}
+
+/* Dracula Theme */
+.dracula {
+    --background-color: #282A36;
+    --text-color: #F8F8F2;
+    --input-bg-color: #44475A;
+    --button-bg-color: #6272A4;
+    --button-hover-bg-color: #50FA7B;
+    --username-color: #FF79C6;       /* Pink */
+    --message-text-color: #8BE9FD;    /* Cyan */
+    --timestamp-color: #BD93F9;       /* Purple */
+}
+
+/* Nord Theme */
+.nord {
+    --background-color: #2E3440;
+    --text-color: #D8DEE9;
+    --input-bg-color: #3B4252;
+    --button-bg-color: #5E81AC;        /* Frost blue */
+    --button-hover-bg-color: #88C0D0;  /* Frost cyan */
+    --username-color: #BF616A;         /* Aurora red */
+    --message-text-color: #A3BE8C;     /* Aurora green */
+    --timestamp-color: #EBCB8B;        /* Aurora yellow */
+}
+
+/* Monokai Theme */
+.monokai {
+    --background-color: #272822;
+    --text-color: #F8F8F2;
+    --input-bg-color: #3E3D32;
+    --button-bg-color: #66D9EF;        /* Cyan */
+    --button-hover-bg-color: #A6E22E;  /* Green */
+    --username-color: #F92672;         /* Pink */
+    --message-text-color: #E6DB74;     /* Yellow */
+    --timestamp-color: #FD971F;        /* Orange */
+}
+
+/* Gruvbox Dark Theme */
+.gruvbox {
+    --background-color: #282828;
+    --text-color: #EBDBB2;
+    --input-bg-color: #3C3836;
+    --button-bg-color: #FABD2F;        /* Yellow */
+    --button-hover-bg-color: #FE8019;  /* Orange */
+    --username-color: #D3869B;         /* Pink */
+    --message-text-color: #B8BB26;     /* Green */
+    --timestamp-color: #83A598;        /* Blue */
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General styling */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* Welcome Prompt */
+#welcome-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+
+#prompt-container {
+    background-color: var(--input-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    width: 300px;
+}
+
+#prompt-container h2 {
+    color: var(--button-bg-color);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#prompt-container label {
+    display: block;
+    margin-top: 15px;
+    color: var(--text-color);
+    font-size: 0.95em;
+}
+
+#prompt-container input, #prompt-container select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--timestamp-color);
+    border-radius: 5px;
+    outline: none;
+}
+
+#join-button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: var(--button-bg-color);
+    color: var(--input-bg-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#join-button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+/* Chat Window */
+#chat-content {
+    padding: 20px;
+    font-family: "Courier New", Courier, monospace;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    min-height: 100vh;
+}
+
+#chat-log {
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--timestamp-color);
+    border-radius: 5px;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.message {
+    display: flex;
+    align-items: center;   
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.username {
+    font-weight: bold;
+    margin-right: 5px;
+    color: var(--username-color);
+}
+
+.message-text {
+    color: var(--message-text-color);
+    margin-right: auto;		
+}
+
+.timestamp {
+    color: var(--timestamp-color);
+    font-size: 0.85em;
+    margin-left: auto;
+    padding-left: 10px;
+}
+
+#message {
+    width: calc(100% - 60px);
+    padding: 10px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--timestamp-color);
+    border-radius: 5px;
+    outline: none;
+}
+
+#send {
+    width: 50px;
+    padding: 10px;
+    background-color: var(--button-bg-color);
+    color: var(--input-bg-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#send:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
