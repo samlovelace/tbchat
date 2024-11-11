@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function() {
         socket.send(roomRequest);
     };
 
+    function getCurrentTimestamp() {
+        const now = new Date();
+        return now.toTimeString().split(' ')[0];  // HH:MM:SS format
+    }
+
     socket.onmessage = function(event) {
         const data = JSON.parse(event.data);
 
@@ -41,10 +46,16 @@ document.addEventListener("DOMContentLoaded", function() {
             const messageTextSpan = document.createElement("span");
             messageTextSpan.classList.add("message-text");
             messageTextSpan.textContent = data.message;
+
+            // Create a span for the timestamp, aligned to the right
+            const timestampSpan = document.createElement("span");
+            timestampSpan.classList.add("timestamp");
+            timestampSpan.textContent = data.timestamp;
     
             // Append both spans to the message element
             messageElement.appendChild(usernameSpan);
             messageElement.appendChild(messageTextSpan);
+            messageElement.appendChild(timestampSpan);
     
             // Append the message element to the chat log
             chatLog.appendChild(messageElement);
@@ -90,19 +101,21 @@ document.addEventListener("DOMContentLoaded", function() {
         const sendButton = document.getElementById("send");
         const messageInput = document.getElementById("message");
 
+        // Send a message with a timestamp
         function sendMessage() {
-            const message = messageInput.value.trim();
-            if (message) {
-                const messageData = JSON.stringify({
+            const messageText = messageInput.value.trim();
+                if (messageText) {
+                    const messageData = JSON.stringify({
                     action: "message",
                     room: room,
                     username: username,
-                    message: message
+                    message: messageText,
+                    timestamp: getCurrentTimestamp()  // Add timestamp here
                 });
-                socket.send(messageData);
-                messageInput.value = ""; // Clear the input field
-            }
+            socket.send(messageData);
+            messageInput.value = ""; // Clear the input field
         }
+}
 
         // Event listener for the Send button and Ctrl+Enter shortcut
         sendButton.addEventListener("click", sendMessage);

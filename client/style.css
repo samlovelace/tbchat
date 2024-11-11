@@ -91,15 +91,18 @@
 /* Username in blue and message text in green */
 .message {
     margin: 5px 0;
+    display: flex;
+    align-items: center;
 }
 
 .username {
     color: #1e90ff; /* Blue for usernames */
-    font-weight: bold;
+    /*font-weight: bold; */
 }
 
 .message-text {
     color: #00ff7f; /* Green for message text */
+    margin-right: auto;
 }
 
 /* Message input and send button */
@@ -111,6 +114,49 @@
     border: 1px solid #444;
     border-radius: 5px;
     outline: none;
+}
+
+/* Dark Theme Chat Content */
+#chat-content {
+    padding: 20px;
+    font-family: "Courier New", Courier, monospace;
+    color: #00ff7f;
+    background-color: #121212;
+    min-height: 100vh;
+}
+
+/* Chat log container */
+#chat-log {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+/* Username in blue and message text in green */
+.message {
+    margin: 5px 0;
+    display: flex;              /* Use flex to position timestamp */
+    align-items: center;
+}
+
+.username {
+    color: #1e90ff;             /* Blue for usernames */
+    font-weight: bold;
+}
+
+.message-text {
+    color: #00ff7f;             /* Green for message text */
+    margin-right: auto;         /* Pushes timestamp to the far right */
+}
+
+.timestamp {
+    color: #888888;             /* Gray for timestamp */
+    font-size: 0.85em;
+    margin-left: 10px;
 }
 
 #send {
