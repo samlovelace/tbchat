@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tbchat - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Welcome Prompt Modal -->
+    <div id="welcome-prompt">
+        <div id="prompt-container">
+            <h2>Welcome to tbchat</h2>
+            <label for="username">username:</label>
+            <input type="text" id="username" placeholder="Username" required>
+
+            <label for="room-select">room:</label>
+            <select id="room-select">
+                <option value="" disabled selected>Loading rooms...</option>
+            </select>
+
+            <button id="join-button">Join Chat</button>
+        </div>
+    </div>
+
+    <!-- Main Chat Content (hidden initially) -->
+    <div id="chat-content" style="display: none;">
+        <h2 id="room-title">Chat Room</h2>
+        <div id="chat-log"></div>
+        <input type="text" id="message" placeholder="Type your message...">
+        <button id="send">Send</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
