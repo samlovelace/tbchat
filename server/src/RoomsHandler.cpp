@@ -34,6 +34,16 @@ std::vector<std::shared_ptr<User>> RoomsHandler::getRoomMembers(std::string aRoo
     return room->members(); 
 }
 
+void RoomsHandler::appendRoomChatHistory(std::string aRoomName, json aJsonMsg)
+{
+    getRoomFromName(aRoomName)->appendChatHistory(aJsonMsg); 
+}
+
+std::vector<json> RoomsHandler::getRoomChatHistory(std::string aRoomName)
+{
+    return getRoomFromName(aRoomName)->getChatHistory(); 
+}
+
 std::vector<std::string> RoomsHandler::getRoomNames()
 {
     std::vector<std::string> roomNames; 

@@ -70,6 +70,13 @@ void Server::onMessage(websocketpp::connection_hdl hdl, server::message_ptr msg)
         // get the name of the room we are adding the user to
         std::string roomName = json_msg["room"]; 
         mRoomsHandler->addUserToRoom(usr, roomName); 
+
+        std::vector<json> roomChatHistory = mRoomsHandler->getRoomChatHistory(roomName); 
+
+        for(auto& msg : roomChatHistory)
+        {
+            mServer->send(usr->getConnectionHdl(), msg.dump(), websocketpp::frame::opcode::text);
+        }
     }
     else if (json_msg["action"] == "message")
     {
@@ -81,6 +88,8 @@ void Server::onMessage(websocketpp::connection_hdl hdl, server::message_ptr msg)
         {
             sendJson(member->getConnectionHdl(), json_msg); 
         }
+
+        mRoomsHandler->appendRoomChatHistory(roomName, json_msg); 
     }
 
 }
