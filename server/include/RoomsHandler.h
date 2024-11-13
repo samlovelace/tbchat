@@ -19,6 +19,7 @@ public:
     std::vector<std::shared_ptr<User>> getRoomMembers(std::string aRoomName); 
     std::vector<json> getRoomChatHistory(std::string aRoomName); 
     void appendRoomChatHistory(std::string aRoomName, json aJsonMsg); 
+    void createRoom(std::string aRoomName); 
 
 private:
     std::vector<std::shared_ptr<Room>> mRooms;  

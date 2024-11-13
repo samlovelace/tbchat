@@ -44,6 +44,13 @@ std::vector<json> RoomsHandler::getRoomChatHistory(std::string aRoomName)
     return getRoomFromName(aRoomName)->getChatHistory(); 
 }
 
+void RoomsHandler::createRoom(std::string aRoomName)
+{
+    std::shared_ptr<Room> room = std::make_shared<Room>(aRoomName); 
+    mRooms.push_back(room); 
+}
+
+
 std::vector<std::string> RoomsHandler::getRoomNames()
 {
     std::vector<std::string> roomNames; 

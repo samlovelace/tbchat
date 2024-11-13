@@ -32,7 +32,6 @@ void Server::stop()
     mServer->stop(); 
 }
 
-
 void Server::onOpen(websocketpp::connection_hdl hdl)
 {
     std::shared_ptr<User> usr = std::make_shared<User>(hdl); 
@@ -98,6 +97,11 @@ void Server::onMessage(websocketpp::connection_hdl hdl, server::message_ptr msg)
         }
 
         mRoomsHandler->appendRoomChatHistory(roomName, json_msg); 
+    }
+    else if (json_msg["action"] == "create_room")
+    {
+        std::string roomName = json_msg["room"]; 
+        mRoomsHandler->createRoom(roomName);
     }
 
 }
