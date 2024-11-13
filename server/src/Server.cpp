@@ -9,6 +9,7 @@ Server::Server() : mServer(std::make_unique<server>()), mRoomsHandler(std::make_
     mServer->set_close_handler(std::bind(&Server::onClose, this, std::placeholders::_1));
     mServer->set_message_handler(std::bind(&Server::onMessage, this, std::placeholders::_1, std::placeholders::_2));
 
+    mServer->set_reuse_addr(true); 
 }
 
 Server::~Server()
@@ -24,6 +25,13 @@ void Server::run(uint16_t aPortToListenOn)
 
     mServer->run();  
 }
+
+void Server::stop()
+{
+    mServer->stop_listening(); 
+    mServer->stop(); 
+}
+
 
 void Server::onOpen(websocketpp::connection_hdl hdl)
 {

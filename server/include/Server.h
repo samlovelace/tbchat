@@ -19,7 +19,8 @@ public:
     Server(/* args */);
     ~Server();
 
-    void run(uint16_t aPortToListenOn); 
+    void run(uint16_t aPortToListenOn);
+    void stop(); 
 
 private:
     std::unique_ptr<server> mServer;
