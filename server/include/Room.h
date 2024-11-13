@@ -23,6 +23,8 @@ public:
 private:
     std::string mName; 
     std::vector<std::shared_ptr<User>> mMembers;
+    
+    // TODO: implement a limit to the size of this vector
     std::vector<json> mChatHistory; 
 
 };
